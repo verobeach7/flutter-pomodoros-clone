@@ -22,6 +22,9 @@ class _GoalWidgetState extends State<GoalWidget> {
             color: Theme.of(context).cardColor.withOpacity(0.7),
           ),
         ),
+        const SizedBox(
+          height: 15,
+        ),
         Text(
           'GOAL',
           style: TextStyle(

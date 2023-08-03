@@ -22,6 +22,9 @@ class _RoundWidgetState extends State<RoundWidget> {
             color: Theme.of(context).cardColor.withOpacity(0.7),
           ),
         ),
+        const SizedBox(
+          height: 15,
+        ),
         Text(
           'ROUND',
           style: TextStyle(
