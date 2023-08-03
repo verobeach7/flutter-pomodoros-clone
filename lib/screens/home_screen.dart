@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 1400;
+  static const twentyFiveMinutes = 1500;
   int totalSeconds = twentyFiveMinutes;
   bool isRunning = false;
   int totalPomodoros = 0;
@@ -51,11 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void onResetPressed() {
+  void onResetPressed(int time) {
     timer.cancel();
     setState(() {
       totalPomodoros = 0;
-      totalSeconds = twentyFiveMinutes;
+      totalSeconds = time;
       isRunning = false;
     });
   }
@@ -182,14 +182,29 @@ class _HomeScreenState extends State<HomeScreen> {
                           tileMode: TileMode.clamp,
                         ).createShader(bounds);
                       },
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TimeBox(time: '15'),
-                          TimeBox(time: '20'),
-                          TimeBox(time: '25'),
-                          TimeBox(time: '30'),
-                          TimeBox(time: '35'),
+                          TimeBox(
+                            time: '15',
+                            onResetPressed: onResetPressed,
+                          ),
+                          TimeBox(
+                            time: '20',
+                            onResetPressed: onResetPressed,
+                          ),
+                          TimeBox(
+                            time: '25',
+                            onResetPressed: onResetPressed,
+                          ),
+                          TimeBox(
+                            time: '30',
+                            onResetPressed: onResetPressed,
+                          ),
+                          TimeBox(
+                            time: '35',
+                            onResetPressed: onResetPressed,
+                          ),
                         ],
                       ),
                     ),
