@@ -13,23 +13,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 1500;
-  int totalSeconds = twentyFiveMinutes;
+  static const initTime = 1500;
+  int totalSeconds = initTime;
+  int setTime = initTime;
   bool isRunning = false;
   int totalPomodoros = 0;
+  int totalGoal = 0;
   late Timer timer;
 
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
       setState(() {
         totalPomodoros = totalPomodoros + 1;
+        if (totalPomodoros == 4) {
+          totalPomodoros = 0;
+          totalGoal = totalGoal + 1;
+        }
         isRunning = false;
-        totalSeconds = twentyFiveMinutes;
+        totalSeconds = setTime;
       });
       timer.cancel();
     } else {
       setState(() {
-        totalSeconds = totalSeconds - 1;
+        totalSeconds = totalSeconds - 200;
+        if (totalSeconds < 0) totalSeconds = 0;
       });
     }
   }
@@ -56,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       totalPomodoros = 0;
       totalSeconds = time;
+      setTime = time;
       isRunning = false;
     });
   }
@@ -234,11 +242,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: Container(
                     color: Colors.amber,
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        RoundWidget(),
-                        GoalWidget(),
+                        RoundWidget(
+                          totalPomodoros: totalPomodoros,
+                        ),
+                        GoalWidget(
+                          totalGoal: totalGoal,
+                        ),
                       ],
                     ),
                   ),

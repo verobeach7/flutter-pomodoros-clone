@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
-class GoalWidget extends StatelessWidget {
-  const GoalWidget({super.key});
+class GoalWidget extends StatefulWidget {
+  final int totalGoal;
+  const GoalWidget({super.key, required this.totalGoal});
 
+  @override
+  State<GoalWidget> createState() => _GoalWidgetState();
+}
+
+class _GoalWidgetState extends State<GoalWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          '0/12',
+          '${widget.totalGoal}/12',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w700,
