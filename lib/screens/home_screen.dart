@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isBreaktime = false;
   int totalPomodoros = 0;
   int totalGoal = 0;
+  String selectedBoxNum = '25';
   late Timer timer;
 
   void onTick(Timer timer) {
@@ -64,13 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void onResetPressed(int time) {
+  void onResetPressed(int time, String num) {
     if (isRunning) timer.cancel();
     setState(() {
       totalPomodoros = 0;
       totalSeconds = time;
       setTime = time;
       isRunning = false;
+      selectedBoxNum = num;
     });
   }
 
@@ -206,22 +208,32 @@ class _HomeScreenState extends State<HomeScreen> {
                               TimeBox(
                                 time: '15',
                                 onResetPressed: onResetPressed,
+                                isBreaktime: isBreaktime,
+                                selectedBoxNum: selectedBoxNum,
                               ),
                               TimeBox(
                                 time: '20',
                                 onResetPressed: onResetPressed,
+                                isBreaktime: isBreaktime,
+                                selectedBoxNum: selectedBoxNum,
                               ),
                               TimeBox(
                                 time: '25',
                                 onResetPressed: onResetPressed,
+                                isBreaktime: isBreaktime,
+                                selectedBoxNum: selectedBoxNum,
                               ),
                               TimeBox(
                                 time: '30',
                                 onResetPressed: onResetPressed,
+                                isBreaktime: isBreaktime,
+                                selectedBoxNum: selectedBoxNum,
                               ),
                               TimeBox(
                                 time: '35',
                                 onResetPressed: onResetPressed,
+                                isBreaktime: isBreaktime,
+                                selectedBoxNum: selectedBoxNum,
                               ),
                             ],
                           ),
